@@ -1,6 +1,19 @@
 This is the integration of Airwallex Hosted Payment Page
 
-The Hosted Payment Page and the Drop-in Element are both solutions provided by Airwallex to facilitate payments, but they differ in how they are integrated and used within your application.
+The Hosted Payment Page is a solutions provided by Airwallex to facilitate payments
+
+### How to run the app
+1. On the home directory create an .env file and the following variables:
+
+   a. AIRWALLEX_API_KEY
+   b. AIRWALLEX_CLIENT_ID
+   c. AIRWALLEX_API="https://api-demo.airwallex.com"
+   d. AIRWALLEX_PCI_API="https://pci-api-demo.airwallex.com"
+
+ 2. run `npm install` to install the dependencies
+ 3. run `npx nodemon index.js` to start the app
+
+
 
 ### Hosted Payment Page
 
