@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page - Make Your Payment</title>
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    .container img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .booking-section {
+      margin-top: 20px;
+    }
+
+    .booking-section h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .booking-section p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    Airwallex.init({
+      env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
+      origin: window.location.origin, // Set up your event target to receive the browser events message
+    });
+
+    // // Function to handle the redirect to the Hosted Payment Page
+    const redirectToHPP = (intentId, clientSecret, currency) => {
+      Airwallex.redirectToCheckout({
+        env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+        intent_id: intentId,
+        client_secret: clientSecret,
+        //client_secret: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjE0OTAxNTIsImV4cCI6MTcyMTQ5Mzc1MiwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiNWVmYjYzMDAtNmFiNC00OGI5LWE5NWUtNzY5NmUxNzJlYjZmIiwiY3VzdG9tZXJfaWQiOiJjdXNfaGtkbWNkOTQ3Z3k1bXliMjZqZCJ9.4r5zlMYzBJuyEM1Pppx7O8ePnrra7RmXI-p-8_Q_66o",
+        customer_id: "cus_hkdmcd947gy5myb26jd",
+        currency: currency,
+        locale: "de", //localization
+        //Add the following to support Applepay
+        applePayRequestOptions: {
+          buttonType: 'buy', // Indicate the type of button you want displayed on your payments form. Like 'buy'
+          buttonColor: 'white-with-line', // Indicate the color of the button. Default value is 'black' 
+          countryCode: 'UK',  // The merchant's two-letter ISO 3166 country code. Like 'HK'
+          totalPriceLabel: 'COMPANY, INC.' // Provide a business name for the label field.
+        }
+      });
+    };
+
+    // Function to handle the redirect to the Hosted Payment Page
+    // Save Payment details during payment
+    // const redirectToHPP = (intentId, clientSecret, currency) => {
+    //   Airwallex.redirectToCheckout({
+    //     env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+    //     intent_id: intentId,
+    //     client_secret: clientSecret,
+    //     customer_id: "cus_hkdmcd947gy5myb26jd",
+    //     currency: currency,
+    //     mode: "payment"
+    //   });
+    // };
+
+    // Function to handle the redirect to the Hosted Payment Page
+    // Save Payment details without payments
+    // const redirectToHPP = (clientSecret, customerId) => {
+    //   Airwallex.redirectToCheckout({
+    //     env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+    //     client_secret: clientSecret,
+    //     customer_id: customerId,
+    //     currency: "USD",
+    //     mode: "recurring",
+    //     recurringOptions: {
+    //       next_triggered_by: 'customer',
+    //       merchant_trigger_reason: 'scheduled',
+    //       card: {
+    //         requires_cvc: true,
+    //         currency
+    //       },
+    //     }
+    //   });
+    // };
+
+
+    // Function to handle the redirect to the Hosted Payment Page
+    // Merchant Initiated Payment
+    // const redirectToHPP = (intentId, clientSecret, currency) => {
+    //   Airwallex.redirectToCheckout({
+    //     env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+    //     intent_id: intentId,
+    //     client_secret: clientSecret,
+    //     //client_secret: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjE0OTAxNTIsImV4cCI6MTcyMTQ5Mzc1MiwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiNWVmYjYzMDAtNmFiNC00OGI5LWE5NWUtNzY5NmUxNzJlYjZmIiwiY3VzdG9tZXJfaWQiOiJjdXNfaGtkbWNkOTQ3Z3k1bXliMjZqZCJ9.4r5zlMYzBJuyEM1Pppx7O8ePnrra7RmXI-p-8_Q_66o",
+    //     customer_id: "cus_hkdmcd947gy5myb26jd",
+    //     currency: currency,
+    //     payment_consent_id: "cst_hkdmrn88hgy7tqxr9nf"
+    //     //mode: "payment"
+    //   });
+    // };
+
+    // Event listener for the form submission
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('payment-form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        try {
+          const amount = document.getElementById('amount').value;
+          const currency = document.getElementById('currency').value;
+
+          const response = await fetch('/create-payment-intent', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount, currency })
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to create PaymentIntent');
+          }
+
+          const data = await response.json();
+          const { id, client_secret, currency: responseCurrency } = data;
+
+          // Redirect to the Hosted Payment Page
+          redirectToHPP(id, client_secret, responseCurrency);
+        } catch (error) {
+          console.error('Error creating PaymentIntent:', error);
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Checkout Page</h1>
+    <p>Make your payment</p>
+
+    <div class="booking-section">
+      <h2>Hotel Booking</h2>
+      <p>Hotel: Grand Luxury Hotel</p>
+      <p>Check-in: 12th July 2024</p>
+      <p>Check-out: 15th July 2024</p>
+      <p>Guests: 2 Adults</p>
+      <p>Total Price: $500.00</p>
+    </div>
+
+    <div class="booking-section">
+      <h2>Flight Booking</h2>
+      <p>Flight: Air Travel</p>
+      <p>From: Hong Kong (HKG)</p>
+      <p>To: Singapore (SIN)</p>
+      <p>Departure: 12th July 2024</p>
+      <p>Return: 15th July 2024</p>
+      <p>Passengers: 2 Adults</p>
+      <p>Total Price: $1000.00</p>
+    </div>
+
+    <form id="payment-form">
+      <input type="hidden" id="amount" value="1500"> <!-- example amount in cents -->
+      <input type="hidden" id="currency" value="USD">
+      <button id="hpp">Checkout13</button>
+    </form>
+  </div>
+</body>
+
+</html>

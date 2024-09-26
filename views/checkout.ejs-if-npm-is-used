@@ -1,0 +1,18 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page - Make Your Payment</title>
+    <script src="/checkout.js" defer></script>
+</head>
+<body>
+    <h1>Checkout Page</h1>
+    <p>Make your payment</p>
+    <form id="payment-form" action="/create-payment-intent" method="post">
+        <input type="hidden" name="amount" value="5000"> <!-- example amount in cents -->
+        <input type="hidden" name="currency" value="USD">
+        <button id="hpp">Checkout</button>
+    </form>
+</body>
+</html> -->
