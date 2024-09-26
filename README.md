@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 This is the integration of Airwallex Hosted Payment Page
 
 The Hosted Payment Page and the Drop-in Element are both solutions provided by Airwallex to facilitate payments, but they differ in how they are integrated and used within your application.
